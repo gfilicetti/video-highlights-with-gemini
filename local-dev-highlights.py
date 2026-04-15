@@ -5,13 +5,16 @@ from google.cloud import storage, videointelligence, bigquery
 from google import genai
 from google.genai import types
 from moviepy import VideoFileClip, concatenate_videoclips
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # --- Configuration ---
-PROJECT_ID = ""
-LOCATION = ""
-GCS_BUCKET = ""
-BQ_DATASET = "video_metadata_dataset"
-BQ_TABLE = "scene_embeddings"
+PROJECT_ID = os.getenv("GCP_PROJECT")
+LOCATION = os.getenv("GCP_LOCATION", "us-central1")
+GCS_BUCKET = os.getenv("GCS_BUCKET_NAME")
+BQ_DATASET = os.getenv("BIGQUERY_DATASET", "video_metadata_dataset")
+BQ_TABLE = os.getenv("MOMENTS_TABLE", "scene_embeddings")
 
 class VideoHighlightGenerator:
     def __init__(self):
@@ -97,10 +100,14 @@ class VideoHighlightGenerator:
 
 # --- EXECUTION ---
 if __name__ == "__main__":
+    if not PROJECT_ID or not GCS_BUCKET:
+        print("Error: GCP_PROJECT and GCS_BUCKET_NAME must be set in your .env file.")
+        exit(1)
+
     gen = VideoHighlightGenerator()
     local_video = "KOC_162_20260223_OCONNOR_TEST9-lowres.mp4"
     # Make sure this URI matches your actual bucket
-    gcs_video_uri = f"gs://yahoo-testing-video-bucket/{local_video}"
+    gcs_video_uri = f"gs://{GCS_BUCKET}/{local_video}"
     
     # 1. Get shot boundaries
     shots = gen.detect_shots(gcs_video_uri)

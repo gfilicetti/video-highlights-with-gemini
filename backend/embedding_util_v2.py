@@ -1,5 +1,8 @@
 import os
 import vertexai
+from dotenv import load_dotenv
+
+load_dotenv()
 from typing import List, Optional
 from vertexai.language_models import TextEmbeddingModel
 from google import genai

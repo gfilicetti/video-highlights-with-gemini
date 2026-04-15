@@ -2,6 +2,9 @@ import json
 import vertexai
 from vertexai.generative_models import GenerativeModel, Part, GenerationConfig
 import os  
+from dotenv import load_dotenv
+
+load_dotenv()
 
 _is_vertex_initialized = False
 

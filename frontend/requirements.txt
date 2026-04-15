@@ -15,6 +15,7 @@ google-auth
 google-auth-httplib2
 
 db-dtypes
+python-dotenv
 
 
 

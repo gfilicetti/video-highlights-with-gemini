@@ -1,5 +1,9 @@
 import os 
 import streamlit as st
+from dotenv import load_dotenv
+
+load_dotenv()
+
 import pandas as pd
 from google.cloud import bigquery
 import google.auth
@@ -19,9 +23,14 @@ GCP_PROJECT = os.environ.get("GCP_PROJECT")
 BIGQUERY_DATASET = os.environ.get("BIGQUERY_DATASET", "video_metadata_dataset")
 
 # Table References
-SCENE_EMBEDDINGS_TABLE = f"{GCP_PROJECT}.{BIGQUERY_DATASET}.scene_embeddings"
-CHAPTERS_TABLE = f"{GCP_PROJECT}.{BIGQUERY_DATASET}.video_chapters_v2"
-CHUNKS_TABLE = f"{GCP_PROJECT}.{BIGQUERY_DATASET}.video_chunks_v2"
+MOMENTS_TABLE = os.environ.get("MOMENTS_TABLE", "scene_embeddings")
+SCENE_EMBEDDINGS_TABLE = f"{GCP_PROJECT}.{BIGQUERY_DATASET}.{MOMENTS_TABLE}"
+
+_CHAPTERS_TABLE_NAME = os.environ.get("CHAPTERS_TABLE", "video_chapters_v2")
+CHAPTERS_TABLE = f"{GCP_PROJECT}.{BIGQUERY_DATASET}.{_CHAPTERS_TABLE_NAME}"
+
+_CHUNKS_TABLE_NAME = os.environ.get("CHUNKS_TABLE", "video_chunks_v2")
+CHUNKS_TABLE = f"{GCP_PROJECT}.{BIGQUERY_DATASET}.{_CHUNKS_TABLE_NAME}"
 
 # --- Page Config ---
 st.set_page_config(page_title="AI Content Intelligence Engine", layout="wide")

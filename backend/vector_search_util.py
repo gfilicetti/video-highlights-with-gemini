@@ -1,5 +1,8 @@
 from google.cloud import aiplatform
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 GCP_PROJECT = os.environ.get("GCP_PROJECT")
 GCP_LOCATION = os.environ.get("GCP_LOCATION")

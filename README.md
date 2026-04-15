@@ -25,13 +25,40 @@ The pipeline follows an event-driven, serverless architecture divided into a Bac
 
 ## Initialization and Setup
 
+### 0. Local Configuration
+Before deploying or running locally, create a `.env` file from the template:
+```bash
+cp .env.template .env
+```
+Fill in the `.env` file with your GCP project details.
+
 ### Prerequisites
 * A GCP Project with billing enabled.
 * A GCS Bucket to host your videos (e.g., `gs://my-video-bucket`).
 * A BigQuery Dataset (e.g., `video_metadata_dataset`).
 * A deployed Vertex AI Vector Search Index.
 
-### 1. BigQuery Setup
+### 1. Infrastructure Deployment (Terraform)
+We use Terraform to deploy the entire stack.
+1. Navigate to the `terraform/` directory.
+2. Initialize Terraform:
+   ```bash
+   terraform init
+   ```
+3. Create a `terraform.tfvars` file with your specific values:
+   ```hcl
+   project_id      = "your-project-id"
+   gcs_bucket_name = "your-video-bucket"
+   backend_image   = "gcr.io/your-project/master-pipeline"
+   frontend_image  = "gcr.io/your-project/video-frontend"
+   ```
+4. Plan and Apply:
+   ```bash
+   terraform plan
+   terraform apply
+   ```
+
+### 2. BigQuery Setup (Manual Alternative)
 Run the following SQL in your GCP Console to set up the required tables:
 ```sql
 CREATE TABLE IF NOT EXISTS `YOUR_PROJECT.video_metadata_dataset.video_chapters_v2` (

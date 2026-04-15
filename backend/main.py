@@ -5,6 +5,9 @@ import traceback
 import time
 import re
 from flask import Flask, request
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # --- Utils ---
 from video_intelligence_util_v2 import transcribe_video
@@ -28,10 +31,10 @@ GCP_LOCATION = os.environ.get("GCP_LOCATION", "us-central1")
 BIGQUERY_DATASET = os.environ.get("BIGQUERY_DATASET", "video_metadata_dataset")
 
 # Tables
-CHAPTERS_TABLE = "video_chapters_v2"
-CHUNKS_TABLE = "video_chunks_v2"
-WORDS_TABLE = "video_transcript_words_v2"
-MOMENTS_TABLE = "scene_embeddings" 
+CHAPTERS_TABLE = os.environ.get("CHAPTERS_TABLE", "video_chapters_v2")
+CHUNKS_TABLE = os.environ.get("CHUNKS_TABLE", "video_chunks_v2")
+WORDS_TABLE = os.environ.get("WORDS_TABLE", "video_transcript_words_v2")
+MOMENTS_TABLE = os.environ.get("MOMENTS_TABLE", "scene_embeddings") 
 
 def sanitize_filename(filename: str):
     base, ext = os.path.splitext(filename)
