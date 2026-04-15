@@ -1,0 +1,20 @@
+# backend/requirements.txt
+
+flask
+gunicorn
+
+# Core SDKs needed
+google-cloud-aiplatform>=1.49.0
+google-genai            
+
+# Other dependencies
+google-cloud-bigquery
+google-cloud-bigquery-storage
+google-cloud-storage
+google-cloud-videointelligence
+google-auth
+google-auth-httplib2
+google-auth-oauthlib
+numpy
+
+
