@@ -210,6 +210,7 @@ __marimo__/
 .terraform/
 *.tfstate
 *.tfstate.backup
+*.tfstate.lock*
 *.tfvars
 *.tfvars.json
 terraform.tfvars
