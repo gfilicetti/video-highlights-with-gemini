@@ -1,11 +1,14 @@
 # Get the project number
 data "google_project" "project" {}
 
+# Get GCS Service Account
+data "google_storage_project_service_account" "gcs_account" {}
+
 # Cloud Storage Service Agent
 resource "google_project_iam_member" "gcs_pubsub_publishing" {
   project = var.project_id
   role    = "roles/pubsub.publisher"
-  member  = "serviceAccount:service-${data.google_project.project.number}@gs-project-accounts.iam.gserviceaccount.com"
+  member  = "serviceAccount:${data.google_storage_project_service_account.gcs_account.email_address}"
 }
 
 # Eventarc Trigger

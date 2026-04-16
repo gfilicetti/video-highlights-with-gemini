@@ -23,9 +23,11 @@ variable "bigquery_dataset_id" {
 variable "backend_image" {
   description = "The container image for the backend service."
   type        = string
+  default     = "us-docker.pkg.dev/cloudrun/container/hello"
 }
 
 variable "frontend_image" {
   description = "The container image for the frontend service."
   type        = string
+  default     = "us-docker.pkg.dev/cloudrun/container/hello"
 }

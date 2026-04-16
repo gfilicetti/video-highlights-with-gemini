@@ -8,6 +8,7 @@ resource "google_vertex_ai_index" "video_transcript_index" {
       dimensions                  = 768
       approximate_neighbors_count = 150
       distance_measure_type       = "DOT_PRODUCT_DISTANCE"
+      shard_size                  = "SHARD_SIZE_SMALL"
       algorithm_config {
         tree_ah_config {
           leaf_node_embedding_count    = 500
@@ -34,7 +35,7 @@ resource "google_vertex_ai_index_endpoint_deployed_index" "deployed_index" {
   # Optional: but recommended for production
   dedicated_resources {
     machine_spec {
-      machine_type = "n1-standard-2"
+      machine_type = "e2-standard-2"
     }
     min_replica_count = 1
     max_replica_count = 1

@@ -41,9 +41,9 @@ resource "google_project_iam_member" "backend_vertex_user" {
   member  = "serviceAccount:${google_service_account.backend_sa.email}"
 }
 
-resource "google_project_iam_member" "backend_video_intelligence" {
+resource "google_project_iam_member" "backend_eventarc_receiver" {
   project = var.project_id
-  role    = "roles/videointelligence.serviceAgent"
+  role    = "roles/eventarc.eventReceiver"
   member  = "serviceAccount:${google_service_account.backend_sa.email}"
 }
 
@@ -76,4 +76,18 @@ resource "google_project_iam_member" "frontend_vertex_user" {
   project = var.project_id
   role    = "roles/aiplatform.user"
   member  = "serviceAccount:${google_service_account.frontend_sa.email}"
+}
+
+# Permissions for Cloud Build / Default Compute Service Account
+# (Used for building and pushing container images)
+resource "google_project_iam_member" "cloudbuild_storage_admin" {
+  project = var.project_id
+  role    = "roles/storage.admin"
+  member  = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
+}
+
+resource "google_project_iam_member" "cloudbuild_artifactregistry_writer" {
+  project = var.project_id
+  role    = "roles/artifactregistry.writer"
+  member  = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
 }
