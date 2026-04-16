@@ -5,7 +5,7 @@ resource "google_bigquery_dataset" "video_metadata" {
 
 resource "google_bigquery_table" "video_chapters" {
   dataset_id = google_bigquery_dataset.video_metadata.dataset_id
-  table_id   = "video_chapters_v2"
+  table_id   = "video_chapters"
   deletion_protection = false
 
   schema = <<EOF
@@ -22,7 +22,7 @@ EOF
 
 resource "google_bigquery_table" "video_chunks" {
   dataset_id = google_bigquery_dataset.video_metadata.dataset_id
-  table_id   = "video_chunks_v2"
+  table_id   = "video_chunks"
   deletion_protection = false
 
   schema = <<EOF
@@ -38,7 +38,7 @@ EOF
 
 resource "google_bigquery_table" "video_transcript_words" {
   dataset_id = google_bigquery_dataset.video_metadata.dataset_id
-  table_id   = "video_transcript_words_v2"
+  table_id   = "video_transcript_words"
   deletion_protection = false
 
   schema = <<EOF

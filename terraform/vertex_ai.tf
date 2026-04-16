@@ -28,7 +28,7 @@ resource "google_vertex_ai_index_endpoint" "video_transcript_endpoint" {
 resource "google_vertex_ai_index_endpoint_deployed_index" "deployed_index" {
   provider           = google-beta
   index_endpoint     = google_vertex_ai_index_endpoint.video_transcript_endpoint.id
-  deployed_index_id  = "video_transcript_deployed_index"
+  deployed_index_id  = "video_transcript_deployed"
   index              = google_vertex_ai_index.video_transcript_index.id
   
   # Optional: but recommended for production

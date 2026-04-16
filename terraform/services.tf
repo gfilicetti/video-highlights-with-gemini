@@ -33,7 +33,7 @@ resource "google_cloud_run_v2_service" "backend" {
       }
       env {
         name  = "VECTOR_SEARCH_DEPLOYED_INDEX_ID"
-        value = "video_transcript_deployed_index"
+        value = "video_transcript_deployed"
       }
     }
   }
@@ -70,7 +70,7 @@ resource "google_cloud_run_v2_service" "frontend" {
       }
       env {
         name  = "VECTOR_SEARCH_DEPLOYED_INDEX_ID"
-        value = "video_transcript_deployed_index"
+        value = "video_transcript_deployed"
       }
     }
   }
