@@ -1,0 +1,22 @@
+# --- Required Variables ---
+
+# The GCP project ID where resources will be deployed
+project_id = "your-project-id"
+
+# A globally unique name for the GCS bucket to store videos
+gcs_bucket_name = "your-unique-video-bucket-name"
+
+# The full GCR/Artifact Registry path to your backend container image
+backend_image = "gcr.io/your-project/video-highlights-backend:latest"
+
+# The full GCR/Artifact Registry path to your frontend container image
+frontend_image = "gcr.io/your-project/video-highlights-frontend:latest"
+
+
+# --- Optional Variables (Defaults provided) ---
+
+# GCP Region for all resources
+# region = "us-central1"
+
+# The ID for the BigQuery dataset
+# bigquery_dataset_id = "video_metadata_dataset"

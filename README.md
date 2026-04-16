@@ -45,13 +45,11 @@ We use Terraform to deploy the entire stack.
    ```bash
    terraform init
    ```
-3. Create a `terraform.tfvars` file with your specific values:
-   ```hcl
-   project_id      = "your-project-id"
-   gcs_bucket_name = "your-video-bucket"
-   backend_image   = "gcr.io/your-project/master-pipeline"
-   frontend_image  = "gcr.io/your-project/video-frontend"
+3. Create a `terraform.tfvars` file from the example:
+   ```bash
+   cp terraform.tfvars.example terraform.tfvars
    ```
+   Edit `terraform.tfvars` with your specific values.
 4. Plan and Apply:
    ```bash
    terraform plan
